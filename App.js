@@ -16,19 +16,25 @@ class App extends React.Component {
       view: 'home'
     }
     this.renderArtists = this.renderArtists.bind(this);
+    this.renderGallery = this.renderGallery.bind(this);
     this.renderView = this.renderView.bind(this);
   };
 
-  renderArtists() { this.setState({view: 'artists'}) }
+  renderArtists() { this.setState({ view: 'artists' }) }
+  renderGallery() { this.setState({ view: 'gallery' })}
 
   renderView() {
     if (this.state.view === 'home') {
       return (
-        <HomeScreen renderArtists={this.renderArtists}/>
+        <HomeScreen renderGallery={this.renderGallery} renderArtists={this.renderArtists}/>
       )
     } else if (this.state.view === 'artists') {
       return (
         <Artists/>
+      )
+    } else if (this.state.view === 'gallery') {
+      return (
+        <Gallery/>
       )
     }
   }

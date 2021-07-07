@@ -11,13 +11,19 @@ const HomeScreen = (props) => {
   //   return <AppLoading />;
   // } else {
     return (
-      <ImageBackground source={require('../assets/mondrian.jpg')} style={styles.background}>
+      <ImageBackground
+        source={require('../assets/mondrian.jpg')}
+        style={styles.background}>
         <View style={styles.title}>
           <Text style={{fontSize: 36, fontWeight: 'bold', fontFamily: 'Inter_900Black'}}>MUSEUM GO</Text>
-          <Pressable style={styles.myGallery}>
+          <Pressable
+            style={styles.myGallery}
+            onPress={props.renderGallery}>
             <Text style={styles.text}>My Gallery</Text>
           </Pressable>
-          <Pressable style={styles.viewArtists} onPress={props.renderArtists}>
+          <Pressable
+            style={styles.viewArtists}
+            onPress={props.renderArtists}>
             <Text style={styles.text}>View Artists</Text>
           </Pressable>
         </View>

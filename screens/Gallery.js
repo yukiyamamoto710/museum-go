@@ -1,19 +1,19 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-function Gallery(props) {
+const Gallery = () => {
   return (
-    <SafeAreaView>
-      <Text>Loading...</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>Loading...</Text>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    fontSize: 24,
+  text: {
+    fontSize: 18,
+    color: 'black',
   },
-})
+});
 
 export default Gallery;

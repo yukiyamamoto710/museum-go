@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, Text, TextInput, View, StyleSheet, Image } from 'react-native';
+import HomeScreen from './HomeScreen.js';
 import Biography from './Biography.js';
 import axios from 'axios';
 
@@ -12,6 +13,12 @@ class Artists extends React.Component {
     };
     this.renderBio = this.renderBio.bind(this);
   }
+
+  // componentDidUpdate(prevState) {
+  //   if(prevState.bio) {
+  //     this.setState({ bio: false });
+  //   }
+  // }
 
   handleSearch() {
     const { artist } = this.state;
@@ -40,7 +47,16 @@ class Artists extends React.Component {
             onPress={this.handleSearch.bind(this)}>
             <Text style={styles.text}>Search</Text>
           </Pressable>
+          <Pressable
+            style={styles.back}
+            onPress={() => {this.setState({ bio: 'home' })}}>
+            <Text>go back</Text>
+          </Pressable>
         </View>
+      )
+    } else if (this.state.bio === 'home') {
+      return (
+        <HomeScreen/>
       )
     } else {
       return (
