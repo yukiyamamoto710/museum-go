@@ -3,7 +3,7 @@ import { StyleSheet, Image, View, Text } from 'react-native';
 
 const WorkEntry = (props) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Image
         source={require('../assets/mondrian2.jpg')}
         style={styles.image}/>
@@ -16,6 +16,11 @@ const WorkEntry = (props) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
   image: {
     width: 300,
     height: 200,

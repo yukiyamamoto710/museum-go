@@ -9,7 +9,7 @@ const HomeScreen = (props) => {
       source={require('../assets/mondrian.jpg')}
       style={styles.background}>
       <View style={styles.title}>
-        <Text style={{fontSize: 36, fontWeight: 'bold', fontFamily: 'Inter_900Black'}}>MUSEUM GO</Text>
+        <Text style={{fontSize: 36, fontWeight: 'bold'}}>MUSEUM GO</Text>
         <Pressable
           style={styles.myGallery}
           onPress={props.renderGallery}>
