@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, TextInput, View, StyleSheet } from 'react-native';
+import { Pressable, Text, TextInput, View, StyleSheet, Image } from 'react-native';
 
 class Artists extends React.Component {
   constructor(props) {
@@ -17,6 +17,7 @@ class Artists extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image source={require('../assets/mondrian2.jpg')} style={styles.image}/>
         <TextInput
           value={this.state.artist}
           onChangeText={(artist) => this.setState({ artist })}
@@ -38,6 +39,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  image: {
+    position: 'absolute',
+    top: 55,
+    width: 325,
+    height: 325,
   },
   input: {
     width: 200,

@@ -7,9 +7,9 @@ const HomeScreen = (props) => {
   let [fontsLoaded] = useFonts({
     Inter_900Black,
   });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // } else {
     return (
       <ImageBackground source={require('../assets/mondrian.jpg')} style={styles.background}>
         <View style={styles.title}>
@@ -17,13 +17,13 @@ const HomeScreen = (props) => {
           <Pressable style={styles.myGallery}>
             <Text style={styles.text}>My Gallery</Text>
           </Pressable>
-          <Pressable style={styles.viewArtists}>
+          <Pressable style={styles.viewArtists} onPress={props.renderArtists}>
             <Text style={styles.text}>View Artists</Text>
           </Pressable>
         </View>
       </ImageBackground>
     )
-  }
+  // }
 };
 
 const styles = StyleSheet.create({

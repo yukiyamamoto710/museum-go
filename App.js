@@ -1,11 +1,45 @@
 import React from 'react';
-import HomeScreen from './screens/HomeScreen';
+import HomeScreen from './screens/HomeScreen.js';
 import Gallery from './screens/Gallery.js';
 import Artists from './screens/Artists.js';
 
-export default function App() {
-  return (
-    <Artists/>
-  );
+// export default function App() {
+//   return (
+//     <Artists/>
+//   );
+// }
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: 'home'
+    }
+    this.renderArtists = this.renderArtists.bind(this);
+    this.renderView = this.renderView.bind(this);
+  };
+
+  renderArtists() { this.setState({view: 'artists'}) }
+
+  renderView() {
+    if (this.state.view === 'home') {
+      return (
+        <HomeScreen renderArtists={this.renderArtists}/>
+      )
+    } else if (this.state.view === 'artists') {
+      return (
+        <Artists/>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <>
+      {this.renderView()}
+      </>
+    )
+  }
 }
 
+export default App;
