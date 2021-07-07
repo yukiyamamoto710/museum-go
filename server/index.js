@@ -9,7 +9,13 @@ app.use(express.json());
 app.get('/artist', (req, res) => {
   const { artist } = req.query;
   let slug = artist.toLowerCase().replace(' ', '-');
-  artistAPI(slug, ()=>{});
+  artistAPI(slug, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data)
+    }
+  });
 })
 
 app.listen(PORT, () => {

@@ -11,10 +11,10 @@ const config = {
 const artistAPI = (artist, callback) => {
   axios.get(`https://api.artsy.net/api/artists/${artist}`, config)
     .then((res) => {
-      console.log(res.data);
+      callback(null, res.data);
     })
     .catch((err) => {
-      console.log(err);
+      callback(err);
     })
 }
 
