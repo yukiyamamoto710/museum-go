@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, Text, TextInput, View, StyleSheet, Image } from 'react-native';
+import axios from 'axios';
 
 class Artists extends React.Component {
   constructor(props) {
@@ -11,7 +12,13 @@ class Artists extends React.Component {
 
   handleSearch() {
     const { artist } = this.state;
-    console.log(artist);
+    axios.get(`http://localhost:3000/artist?artist=${artist}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   render() {
