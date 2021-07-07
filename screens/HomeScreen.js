@@ -1,35 +1,28 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Text, Pressable } from 'react-native';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { AppLoading } from 'expo';
+// import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+// import { AppLoading } from 'expo';
 
 const HomeScreen = (props) => {
-  let [fontsLoaded] = useFonts({
-    Inter_900Black,
-  });
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // } else {
-    return (
-      <ImageBackground
-        source={require('../assets/mondrian.jpg')}
-        style={styles.background}>
-        <View style={styles.title}>
-          <Text style={{fontSize: 36, fontWeight: 'bold', fontFamily: 'Inter_900Black'}}>MUSEUM GO</Text>
-          <Pressable
-            style={styles.myGallery}
-            onPress={props.renderGallery}>
-            <Text style={styles.text}>My Gallery</Text>
-          </Pressable>
-          <Pressable
-            style={styles.viewArtists}
-            onPress={props.renderArtists}>
-            <Text style={styles.text}>View Artists</Text>
-          </Pressable>
-        </View>
-      </ImageBackground>
-    )
-  // }
+  return (
+    <ImageBackground
+      source={require('../assets/mondrian.jpg')}
+      style={styles.background}>
+      <View style={styles.title}>
+        <Text style={{fontSize: 36, fontWeight: 'bold', fontFamily: 'Inter_900Black'}}>MUSEUM GO</Text>
+        <Pressable
+          style={styles.myGallery}
+          onPress={props.renderGallery}>
+          <Text style={styles.text}>My Gallery</Text>
+        </Pressable>
+        <Pressable
+          style={styles.viewArtists}
+          onPress={props.renderArtists}>
+          <Text style={styles.text}>View Artists</Text>
+        </Pressable>
+      </View>
+    </ImageBackground>
+  )
 };
 
 const styles = StyleSheet.create({
@@ -70,7 +63,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    fontFamily: 'Inter_900Black',
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',

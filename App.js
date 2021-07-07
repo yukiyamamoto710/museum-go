@@ -3,12 +3,6 @@ import HomeScreen from './screens/HomeScreen.js';
 import Gallery from './screens/Gallery.js';
 import Artists from './screens/Artists.js';
 
-// export default function App() {
-//   return (
-//     <Artists/>
-//   );
-// }
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +20,9 @@ class App extends React.Component {
   renderView() {
     if (this.state.view === 'home') {
       return (
-        <HomeScreen renderGallery={this.renderGallery} renderArtists={this.renderArtists}/>
+        <HomeScreen
+          renderGallery={this.renderGallery}
+          renderArtists={this.renderArtists}/>
       )
     } else if (this.state.view === 'artists') {
       return (
