@@ -2,15 +2,21 @@ import React from 'react';
 import { StyleSheet, Image, View, Text } from 'react-native';
 
 const WorkEntry = (props) => {
+  var photo;
+  if (props.art.photo.indexOf('Application') !== -1) {
+    photo = {uri: `${props.art.photo}`};
+  } else {
+    photo = require("../assets/van-gogh.jpg");
+  }
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/mondrian2.jpg')}
+        source={photo}
         style={styles.image}/>
-      <Text>Artist's Name</Text>
-      <Text>Title</Text>
-      <Text>Year</Text>
-      <Text>Location</Text>
+      <Text>{props.art.name}</Text>
+      <Text>{props.art.title}</Text>
+      <Text>{props.art.year}</Text>
+      <Text>{props.art.location}</Text>
     </View>
   )
 }

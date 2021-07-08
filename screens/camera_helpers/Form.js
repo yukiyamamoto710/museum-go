@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TextInput, Image, SafeAreaView, ScrollView, Pressable, Text } from 'react-native';
-import Gallery from '../Gallery.js';
 
 class Form extends React.Component {
   constructor(props) {
@@ -47,7 +46,7 @@ class Form extends React.Component {
           <Pressable
             style={styles.button}
             onPress={() => {
-              this.props.addArt({...this.state, ...{photo: this.props.photo}})
+              this.props.addToList({...this.state, ...{photo: this.props.photo}})
             }}>
             <Text style={styles.text}>Add Artwork</Text>
           </Pressable>

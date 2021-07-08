@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, Text, SafeAreaView, ScrollView } from 'react-native';
+import dammyData from './data/dammyData.js';
 import HomeScreen from './HomeScreen.js';
 import CameraView from './CameraView.js';
 import WorkEntry from './WorkEntry.js';
@@ -9,7 +10,7 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      list: dammyData,
       view: false,
       photo: ''
     }
@@ -20,7 +21,7 @@ class Gallery extends React.Component {
 
   addToList(art) {
     let updated = [...this.state.list];
-    updated.push(art);
+    updated.unshift(art);
     this.setState({
       list: updated,
       view: false
@@ -43,13 +44,9 @@ class Gallery extends React.Component {
               onPress={this.props.renderHome}></Button>
             <Button title="Add"
               onPress={()=>this.setState({view: 'camera'})}></Button>
-            {this.state.list.forEach((art) => {
-              console.log('hey');
-              return(<WorkEntry/>)
+            {this.state.list.map((art) => {
+              return <WorkEntry key={art.photo} art={art}/>
             })}
-            <WorkEntry/>
-            <WorkEntry/>
-            <WorkEntry/>
           </ScrollView>
         </SafeAreaView>
       )
@@ -59,7 +56,7 @@ class Gallery extends React.Component {
       )
     } else if (this.state.view === 'form') {
       return (
-        <Form addToList={this.addToList}/>
+        <Form addToList={this.addToList} photo={this.state.photo}/>
       )
     }
   }
