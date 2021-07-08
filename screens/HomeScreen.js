@@ -1,7 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Text, Pressable } from 'react-native';
-// import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-// import { AppLoading } from 'expo';
+import { ImageBackground, View, Text, Pressable, StyleSheet } from 'react-native';
 
 const HomeScreen = (props) => {
   return (
@@ -9,7 +7,7 @@ const HomeScreen = (props) => {
       source={require('../assets/mondrian.jpg')}
       style={styles.background}>
       <View style={styles.title}>
-        <Text style={{fontSize: 36, fontWeight: 'bold'}}>MUSEUM GO</Text>
+        <Text style={styles.titleText}>MUSEUM GO</Text>
         <Pressable
           style={styles.myGallery}
           onPress={props.renderGallery}>
@@ -37,12 +35,16 @@ const styles = StyleSheet.create({
     right: -100,
     bottom: 0,
     justifyContent: 'center',
-    alignItems: 'center',
+  },
+  titleText: {
+    fontSize: 45,
+    fontWeight: 'bold',
+    right: -110,
   },
   myGallery: {
     position: 'relative',
     top: 50,
-    left: 0,
+    left: 115,
     right: -300,
     height: 75,
     justifyContent: 'center',
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
   viewArtists: {
     position: 'relative',
     top: 150,
-    left: 0,
+    left: 105,
     right: -300,
     height: 75,
     justifyContent: 'center',
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+    right: -65,
   },
 });
 

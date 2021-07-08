@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Button, Text, SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import dammyData from './data/dammyData.js';
 import HomeScreen from './HomeScreen.js';
 import CameraView from './CameraView.js';

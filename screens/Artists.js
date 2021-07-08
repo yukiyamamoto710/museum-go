@@ -1,8 +1,9 @@
 import React from 'react';
-import { Pressable, Text, TextInput, View, StyleSheet, Image } from 'react-native';
+import { View, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
+import axios from 'axios';
+
 import HomeScreen from './HomeScreen.js';
 import Biography from './Biography.js';
-import axios from 'axios';
 
 class Artists extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Artists extends React.Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.renderSearchBar = this.renderSearchBar.bind(this);
+    this.showAlert = this.showAlert.bind(this);
     this.renderBio = this.renderBio.bind(this);
   }
 
@@ -23,7 +25,7 @@ class Artists extends React.Component {
         this.setState({bio: JSON.stringify(res.data)})
       })
       .catch((err) => {
-        console.log(err);
+        this.showAlert();
       })
   }
 
@@ -31,11 +33,17 @@ class Artists extends React.Component {
     this.setState({ bio: false });
   }
 
+  showAlert() {
+    Alert.alert("Artist Not Found");
+  }
+
   renderBio() {
     if (!this.state.bio) {
       return (
         <View style={styles.container}>
-          <Image source={require('../assets/mondrian2.jpg')} style={styles.image}/>
+          <Image
+            source={require('../assets/mondrian2.jpg')}
+            style={styles.image}/>
           <TextInput
             value={this.state.artist}
             onChangeText={(artist) => this.setState({ artist })}
@@ -46,11 +54,10 @@ class Artists extends React.Component {
             onPress={this.handleSearch}>
             <Text style={styles.text}>Search</Text>
           </Pressable>
-          <Pressable
-            style={styles.back}
-            onPress={this.props.renderHome}>
-            <Text>Back</Text>
-          </Pressable>
+          <Button
+            onPress={this.props.renderHome}
+            title="Back"
+            color="black"/>
         </View>
       )
     } else {
@@ -102,17 +109,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 4,
     backgroundColor: 'black',
-  },
-  back: {
-    height: 40,
-    width: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    backgroundColor: 'white',
-    borderColor: 'black',
-    marginBottom: 10,
   },
   text: {
     fontSize: 16,
