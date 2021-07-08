@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Pressable, ImageBackground } from 'react-native';
 import { Camera } from 'expo-camera';
 import CameraPreview from './camera_helpers/CameraPreview.js';
+import Form from './camera_helpers/Form.js';
 
 const CameraView = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -18,9 +19,18 @@ const CameraView = () => {
   const takePicture = async () => {
     if (!this.camera) return
     const photo = await this.camera.takePictureAsync()
-    console.log(photo)
     setPreviewVisible(true)
     setCapturedImage(photo)
+  }
+
+  const savePhoto = () => {
+    setPreviewVisible(false)
+  }
+
+  const retakePicture = () => {
+    setCapturedImage(null)
+    setPreviewVisible(false)
+    // __startCamera()
   }
 
   if (hasPermission === null) {
@@ -30,7 +40,16 @@ const CameraView = () => {
     return <Text>No access to camera</Text>;
   }
   if (previewVisible && capturedImage) {
-    return  <CameraPreview photo={capturedImage.uri}/>;
+    return (
+      <CameraPreview
+        photo={capturedImage.uri}
+        savePhoto={savePhoto}
+        retakePicture={retakePicture}/>
+    )
+  } else if (!previewVisible && capturedImage) {
+    return (
+      <Form photo={capturedImage.uri}/>
+    )
   } else {
     return (
       <View style={styles.container}>
