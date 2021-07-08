@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, Text, SafeAreaView, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import dammyData from './data/dammyData.js';
 import HomeScreen from './HomeScreen.js';
 import CameraView from './CameraView.js';
@@ -15,8 +16,26 @@ class Gallery extends React.Component {
       photo: ''
     }
     this.addToList = this.addToList.bind(this);
+    this.storeData = this.storeData.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderPage = this.renderPage.bind(this);
+  }
+
+  componentDidMount() {
+    const getList = async () => {
+      try {
+        const list = await AsyncStorage.getItem('list')
+        if (list) {
+          var parsed = JSON.parse(list);
+          var updated = [...this.state.list];
+          updated.unshift(parsed);
+          this.setState({ list: updated })
+        }
+      } catch(e) {
+        console.log(e)
+      }
+    };
+    getList();
   }
 
   addToList(art) {
@@ -25,7 +44,18 @@ class Gallery extends React.Component {
     this.setState({
       list: updated,
       view: false
-    })
+    }, this.storeData(art))
+  }
+
+  storeData(art) {
+    const storeList = async () => {
+      try {
+        await AsyncStorage.mergeItem('list', JSON.stringify(art))
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    storeList();
   }
 
   renderForm(photo) {
