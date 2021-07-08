@@ -25,12 +25,12 @@ const CameraView = (props) => {
 
   const savePhoto = () => {
     setPreviewVisible(false)
+    props.renderForm(capturedImage.uri)
   }
 
   const retakePicture = () => {
     setCapturedImage(null)
     setPreviewVisible(false)
-    // __startCamera()
   }
 
   if (hasPermission === null) {
