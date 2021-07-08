@@ -16,15 +16,15 @@ class Gallery extends React.Component {
   }
 
   addArt(art) {
-    console.log(art);
+    let updated = [...this.state.list];
+    updated.push(art);
     this.setState({
-      list: [art, ...this.state.list]
+      list: updated
     })
   }
 
   renderPage() {
     if (!this.state.view) {
-      console.log(this.state.list)
       return (
         <SafeAreaView>
           <ScrollView style={styles.container}>
@@ -32,9 +32,13 @@ class Gallery extends React.Component {
               onPress={()=>this.setState({view: 'home'})}></Button>
             <Button title="Add"
               onPress={()=>this.setState({view: 'camera'})}></Button>
-            {this.state.list.map((art) => {
-              (<WorkEntry/>)
+            {this.state.list.forEach((art) => {
+              console.log('hey');
+              return <WorkEntry/>
             })}
+            <WorkEntry/>
+            <WorkEntry/>
+            <WorkEntry/>
           </ScrollView>
         </SafeAreaView>
       )

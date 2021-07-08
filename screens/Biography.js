@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, Image, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, Text, Image, StyleSheet, Pressable } from 'react-native';
 
 const Biography = (props) => {
   const bio = JSON.parse(props.bio);
@@ -13,6 +13,11 @@ const Biography = (props) => {
       <ScrollView style={styles.scroll}>
         <Text style={styles.bio}>{bio.biography}</Text>
       </ScrollView>
+      <Pressable
+        style={styles.back}
+        onPress={props.renderSearchBar}>
+        <Text>Back</Text>
+      </Pressable>
     </SafeAreaView>
   )
 }
@@ -39,6 +44,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     paddingVertical: 5,
     color: 'black',
+  },
+  back: {
+    height: 40,
+    width: 200,
+    left: 20,
+    marginTop: 5,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    backgroundColor: 'white',
+    borderColor: 'black',
+    marginBottom: 10,
   }
 })
 export default Biography;

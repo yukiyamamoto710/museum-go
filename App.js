@@ -9,11 +9,13 @@ class App extends React.Component {
     this.state = {
       view: 'home'
     }
+    this.renderHome = this.renderHome.bind(this);
     this.renderArtists = this.renderArtists.bind(this);
     this.renderGallery = this.renderGallery.bind(this);
     this.renderView = this.renderView.bind(this);
   };
 
+  renderHome() { this.setState({ view: 'home' })}
   renderArtists() { this.setState({ view: 'artists' }) }
   renderGallery() { this.setState({ view: 'gallery' })}
 
@@ -26,11 +28,11 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'artists') {
       return (
-        <Artists/>
+        <Artists renderHome={this.renderHome}/>
       )
     } else if (this.state.view === 'gallery') {
       return (
-        <Gallery/>
+        <Gallery renderHome={this.renderHome}/>
       )
     }
   }

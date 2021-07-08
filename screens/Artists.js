@@ -11,14 +11,10 @@ class Artists extends React.Component {
       artist: '',
       bio: false
     };
+    this.handleSearch = this.handleSearch.bind(this);
+    this.renderSearchBar = this.renderSearchBar.bind(this);
     this.renderBio = this.renderBio.bind(this);
   }
-
-  // componentDidUpdate(prevState) {
-  //   if(prevState.bio) {
-  //     this.setState({ bio: false });
-  //   }
-  // }
 
   handleSearch() {
     const { artist } = this.state;
@@ -31,6 +27,10 @@ class Artists extends React.Component {
       })
   }
 
+  renderSearchBar() {
+    this.setState({ bio: false });
+  }
+
   renderBio() {
     if (!this.state.bio) {
       return (
@@ -40,27 +40,24 @@ class Artists extends React.Component {
             value={this.state.artist}
             onChangeText={(artist) => this.setState({ artist })}
             placeholder={'Artist'}
-            style={styles.input}
-          />
+            style={styles.input}/>
           <Pressable
             style={styles.button}
-            onPress={this.handleSearch.bind(this)}>
+            onPress={this.handleSearch}>
             <Text style={styles.text}>Search</Text>
           </Pressable>
           <Pressable
             style={styles.back}
-            onPress={() => {this.setState({ bio: 'home' })}}>
-            <Text>go back</Text>
+            onPress={this.props.renderHome}>
+            <Text>Back</Text>
           </Pressable>
         </View>
       )
-    } else if (this.state.bio === 'home') {
-      return (
-        <HomeScreen/>
-      )
     } else {
       return (
-        <Biography bio={this.state.bio}/>
+        <Biography
+          bio={this.state.bio}
+          renderSearchBar={this.renderSearchBar}/>
       )
     }
   }
@@ -89,9 +86,11 @@ const styles = StyleSheet.create({
   input: {
     width: 200,
     height: 44,
+    top: 10,
     padding: 10,
     borderWidth: 1,
     borderColor: 'black',
+    margin: 10,
     marginBottom: 10,
   },
   button: {
@@ -100,8 +99,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 32,
+    marginTop: 10,
     borderRadius: 4,
     backgroundColor: 'black',
+  },
+  back: {
+    height: 40,
+    width: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    backgroundColor: 'white',
+    borderColor: 'black',
+    marginBottom: 10,
   },
   text: {
     fontSize: 16,
