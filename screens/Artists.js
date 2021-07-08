@@ -18,7 +18,7 @@ class Artists extends React.Component {
 
   handleSearch() {
     const { artist } = this.state;
-    axios.get(`http://localhost:3000/artist?artist=${artist}`)
+    axios.get(`http://0.0.0.0:8000/artist?artist=${artist}`)
       .then((res) => {
         this.setState({bio: JSON.stringify(res.data)})
       })
