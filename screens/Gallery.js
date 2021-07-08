@@ -11,26 +11,36 @@ class Gallery extends React.Component {
       list: [],
       view: false
     }
+    this.addArt = this.addArt.bind(this);
     this.renderPage = this.renderPage.bind(this);
+  }
+
+  addArt(art) {
+    console.log(art);
+    this.setState({
+      list: [art, ...this.state.list]
+    })
   }
 
   renderPage() {
     if (!this.state.view) {
+      console.log(this.state.list)
       return (
         <SafeAreaView>
           <ScrollView style={styles.container}>
-            <Button title="Back" onPress={()=>this.setState({view: 'home'})}></Button>
-            <Button title="Add" onPress={()=>this.setState({view: 'camera'})}></Button>
-            <WorkEntry/>
-            <WorkEntry/>
-            <WorkEntry/>
-            <WorkEntry/>
+            <Button title="Back"
+              onPress={()=>this.setState({view: 'home'})}></Button>
+            <Button title="Add"
+              onPress={()=>this.setState({view: 'camera'})}></Button>
+            {this.state.list.map((art) => {
+              (<WorkEntry/>)
+            })}
           </ScrollView>
         </SafeAreaView>
       )
     } else if (this.state.view ==='camera') {
       return (
-        <CameraView/>
+        <CameraView addArt={this.addArt}/>
       )
     } else if (this.state.view === 'home') {
       return (

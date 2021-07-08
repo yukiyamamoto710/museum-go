@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import CameraPreview from './camera_helpers/CameraPreview.js';
 import Form from './camera_helpers/Form.js';
 
-const CameraView = () => {
+const CameraView = (props) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
@@ -48,7 +48,9 @@ const CameraView = () => {
     )
   } else if (!previewVisible && capturedImage) {
     return (
-      <Form photo={capturedImage.uri}/>
+      <Form
+        photo={capturedImage.uri}
+        addArt={props.addArt}/>
     )
   } else {
     return (

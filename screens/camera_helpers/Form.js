@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TextInput, Image, SafeAreaView, ScrollView, Pressable, Text } from 'react-native';
+import Gallery from '../Gallery.js';
 
 class Form extends React.Component {
   constructor(props) {
@@ -9,49 +10,60 @@ class Form extends React.Component {
       title: '',
       year: '',
       medium: '',
-      location: ''
+      location: '',
+      view: true
     }
   }
 
   render() {
-    console.log(this.props.photo)
-    return (
-      <SafeAreaView style={styles.container}>
-        <Image source={{url: `${this.props.photo}`}} style={styles.image}/>
-        <ScrollView style={styles.form}>
-          <TextInput
-            value={this.state.name}
-            onChangeText={(name) => this.setState({ name })}
-            placeholder={'Name'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.title}
-            onChangeText={(title) => this.setState({ title })}
-            placeholder={'Title'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.year}
-            onChangeText={(year) => this.setState({ year })}
-            placeholder={'Year'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.medium}
-            onChangeText={(medium) => this.setState({ medium })}
-            placeholder={'Medium'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.location}
-            onChangeText={(location) => this.setState({ location })}
-            placeholder={'Location'}
-            style={styles.input}/>
-          <Pressable
-            style={styles.button}
-            >
-            <Text style={styles.text}>Add Artwork</Text>
-          </Pressable>
-        </ScrollView>
-      </SafeAreaView>
-    )
+    if (this.state.view) {
+      return (
+        <SafeAreaView style={styles.container}>
+          <Image source={{url: `${this.props.photo}`}} style={styles.image}/>
+          <ScrollView style={styles.form}>
+            <TextInput
+              value={this.state.name}
+              onChangeText={(name) => this.setState({ name })}
+              placeholder={'Name'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.title}
+              onChangeText={(title) => this.setState({ title })}
+              placeholder={'Title'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.year}
+              onChangeText={(year) => this.setState({ year })}
+              placeholder={'Year'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.medium}
+              onChangeText={(medium) => this.setState({ medium })}
+              placeholder={'Medium'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.location}
+              onChangeText={(location) => this.setState({ location })}
+              placeholder={'Location'}
+              style={styles.input}/>
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                this.props.addArt({...this.state, ...{photo: this.props.photo}})
+                this.setState({
+                  view: false
+                })
+              }}>
+              <Text style={styles.text}>Add Artwork</Text>
+            </Pressable>
+          </ScrollView>
+        </SafeAreaView>
+      )
+    } else {
+      return (
+        <Gallery/>
+      )
+    }
   }
 }
 
