@@ -24,13 +24,13 @@ const CameraView = (props) => {
   }
 
   const savePhoto = () => {
-    setPreviewVisible(false)
+    // setPreviewVisible(false)
+    props.renderForm(capturedImage.uri)
   }
 
   const retakePicture = () => {
     setCapturedImage(null)
     setPreviewVisible(false)
-    // __startCamera()
   }
 
   if (hasPermission === null) {
@@ -46,12 +46,12 @@ const CameraView = (props) => {
         savePhoto={savePhoto}
         retakePicture={retakePicture}/>
     )
-  } else if (!previewVisible && capturedImage) {
-    return (
-      <Form
-        photo={capturedImage.uri}
-        addArt={props.addArt}/>
-    )
+  // } else if (!previewVisible && capturedImage) {
+  //   return (
+  //     <Form
+  //       photo={capturedImage.uri}
+  //       addArt={props.addArt}/>
+  //   )
   } else {
     return (
       <View style={styles.container}>
