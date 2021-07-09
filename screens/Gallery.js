@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, ScrollView, View, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import dammyData from './dammyData.js';
+import dummyData from './dummyData.js';
 import HomeScreen from './HomeScreen.js';
 import CameraView from './CameraView.js';
 import WorkEntry from './WorkEntry.js';
@@ -12,13 +12,14 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: dammyData,
+      list: dummyData,
       view: false,
       photo: ''
     }
     this.addToList = this.addToList.bind(this);
     this.storeData = this.storeData.bind(this);
     this.renderForm = this.renderForm.bind(this);
+    this.renderList = this.renderList.bind(this);
     this.renderPage = this.renderPage.bind(this);
   }
 
@@ -63,6 +64,10 @@ class Gallery extends React.Component {
     });
   }
 
+  renderList() {
+    this.setState({ view: false })
+  }
+
   renderPage() {
     if (!this.state.view) {
       return (
@@ -86,7 +91,7 @@ class Gallery extends React.Component {
       )
     } else if (this.state.view === 'camera') {
       return (
-        <CameraView renderForm={this.renderForm}/>
+        <CameraView renderForm={this.renderForm} renderList={this.renderList}/>
       )
     } else if (this.state.view === 'form') {
       return (
