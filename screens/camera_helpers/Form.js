@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, Image, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, TextInput, Image, SafeAreaView, ScrollView, KeyboardAvoidingView } from 'react-native';
 import AwesomeButton from "react-native-really-awesome-button";
 
 class Form extends React.Component {
@@ -18,45 +18,49 @@ class Form extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <Image source={{url: `${this.props.photo}`}} style={styles.image}/>
-        <ScrollView style={styles.form}>
-          <TextInput
-            value={this.state.name}
-            onChangeText={(name) => this.setState({ name })}
-            placeholder={'Name'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.title}
-            onChangeText={(title) => this.setState({ title })}
-            placeholder={'Title'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.year}
-            onChangeText={(year) => this.setState({ year })}
-            placeholder={'Year'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.medium}
-            onChangeText={(medium) => this.setState({ medium })}
-            placeholder={'Medium'}
-            style={styles.input}/>
-          <TextInput
-            value={this.state.location}
-            onChangeText={(location) => this.setState({ location })}
-            placeholder={'Location'}
-            style={styles.input}/>
-          <AwesomeButton
-            progress
-            onPress={() => {
-              this.props.addToList({...this.state, ...{photo: this.props.photo}})
-            }}
-            backgroundColor='black'
-            height={40}
-            width={120}
-            textFontFamily="Georgia"
-            style={styles.button}>
-            Add Artwork
-          </AwesomeButton>
-        </ScrollView>
+        <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={styles.keyboard}>
+          <ScrollView style={styles.form}>
+            <TextInput
+              value={this.state.name}
+              onChangeText={(name) => this.setState({ name })}
+              placeholder={'Name'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.title}
+              onChangeText={(title) => this.setState({ title })}
+              placeholder={'Title'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.year}
+              onChangeText={(year) => this.setState({ year })}
+              placeholder={'Year'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.medium}
+              onChangeText={(medium) => this.setState({ medium })}
+              placeholder={'Medium'}
+              style={styles.input}/>
+            <TextInput
+              value={this.state.location}
+              onChangeText={(location) => this.setState({ location })}
+              placeholder={'Location'}
+              style={styles.input}/>
+            <AwesomeButton
+              progress
+              onPress={() => {
+                this.props.addToList({...this.state, ...{photo: this.props.photo}})
+              }}
+              backgroundColor='black'
+              height={40}
+              width={120}
+              textFontFamily="Georgia"
+              style={styles.button}>
+              Add Artwork
+            </AwesomeButton>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     )
   }
@@ -64,6 +68,9 @@ class Form extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  keyboard: {
     flex: 1,
   },
   image: {
