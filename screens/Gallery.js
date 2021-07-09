@@ -101,7 +101,9 @@ class Gallery extends React.Component {
       )
     } else if (this.state.view === 'camera') {
       return (
-        <CameraView renderForm={this.renderForm} renderList={this.renderList}/>
+        <CameraView
+          renderForm={this.renderForm}
+          renderList={this.renderList}/>
       )
     } else if (this.state.view === 'form') {
       return (
