@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Pressable, ImageBackground } from 'react-native';
+import { StyleSheet, View, Pressable, ImageBackground, Text } from 'react-native';
 import { Camera } from 'expo-camera';
 
 import CameraPreview from './camera_helpers/CameraPreview.js';
@@ -53,6 +53,10 @@ const CameraView = (props) => {
           style={styles.camera}
           ref={(ref) => { this.camera = ref }}>
           <View style={styles.buttonContainer}>
+            <Pressable>
+              <Text style={styles.back}
+                onPress={props.renderList}>Back</Text>
+            </Pressable>
             <Pressable
               style={styles.icon}
               onPress={takePicture}/>
@@ -69,6 +73,13 @@ const styles = StyleSheet.create({
   },
   camera: {
     flex: 1,
+  },
+  back: {
+    position: 'absolute',
+    bottom: 55,
+    left: 30,
+    fontSize: 18,
+    color: 'white',
   },
   icon: {
     position: 'absolute',

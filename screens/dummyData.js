@@ -1,4 +1,4 @@
-const dammyData = [
+const dummyData = [
   {
     location: "Art Institute Chicago",
     medium: "oil on canvas",
@@ -25,4 +25,4 @@ const dammyData = [
   }
 ]
 
-export default dammyData;
+export default dummyData;
