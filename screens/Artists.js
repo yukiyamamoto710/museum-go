@@ -11,10 +11,14 @@ class Artists extends React.Component {
     super(props);
     this.state = {
       artist: '',
-      bio: false
+      bio: false,
+      filteredSuggestions: [],
+      showSuggestions: false
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.renderSearchBar = this.renderSearchBar.bind(this);
+    this.renderSuggestions = this.renderSuggestions.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.showAlert = this.showAlert.bind(this);
     this.renderBio = this.renderBio.bind(this);
   }
@@ -38,6 +42,30 @@ class Artists extends React.Component {
     Alert.alert("Artist Not Found");
   }
 
+  renderSuggestions() {
+    const filteredSuggestions = this.props.suggestions.filter(
+      suggestion =>
+        suggestion.toLowerCase().indexOf(this.state.artist.toLowerCase()) > -1
+    );
+    if(this.state.showSuggestions && this.state.artist) {
+      if (filteredSuggestions.length) {
+        return filteredSuggestions.map((suggestion) => {
+          return <Button onPress={this.handleClick} title={suggestion}></Button>
+        })
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  handleClick(e) {
+    // this.setState({
+    //   artist: e.currentTarget.innerText
+    // });
+  };
+
   renderBio() {
     if (!this.state.bio) {
       return (
@@ -47,9 +75,13 @@ class Artists extends React.Component {
             style={styles.image}/>
           <TextInput
             value={this.state.artist}
-            onChangeText={(artist) => this.setState({ artist })}
+            onChangeText={(artist) =>
+              this.setState({artist, showSuggestions: true})}
             placeholder={'Artist'}
             style={styles.input}/>
+          <View>
+            {this.renderSuggestions()}
+          </View>
           <AwesomeButton
             progress
             onPress={this.handleSearch}
