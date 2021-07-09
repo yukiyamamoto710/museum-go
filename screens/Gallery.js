@@ -29,7 +29,9 @@ class Gallery extends React.Component {
         const list = await AsyncStorage.getItem('list')
         if (list) {
           let updated = [...this.state.list];
-          updated.unshift(JSON.parse(list));
+          JSON.parse(list).forEach((item) => {
+            updated.unshift(JSON.parse(item))
+          })
           this.setState({ list: updated })
         }
       } catch(e) {
@@ -50,7 +52,15 @@ class Gallery extends React.Component {
   storeData(art) {
     (async () => {
       try {
-        await AsyncStorage.mergeItem('list', JSON.stringify(art))
+        let list = await AsyncStorage.getItem('list')
+        let added = JSON.stringify(art);
+        if (!list) {
+          await AsyncStorage.setItem('list', JSON.stringify(added))
+        } else {
+          let updated = JSON.parse(list)
+          updated.push(added)
+          await AsyncStorage.setItem('list', JSON.stringify(updated))
+        }
       } catch (e) {
         console.log(e)
       }
@@ -83,8 +93,8 @@ class Gallery extends React.Component {
               color="black"/>
           </View>
           <ScrollView>
-            {this.state.list.map((art) => {
-              return <WorkEntry key={art.photo} art={art}/>
+            {this.state.list.map((art, i) => {
+              return <WorkEntry key={i} art={art}/>
             })}
           </ScrollView>
         </SafeAreaView>
