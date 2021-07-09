@@ -22,6 +22,14 @@ const dummyData = [
     photo: require("../assets/seurat.jpeg"),
     title: "A Sunday on La Grande Jatte",
     year: "1884",
+  },
+  {
+    location: "Art Institute Chicago",
+    medium: "oil on canvas",
+    name: "Vasily Kandinsky",
+    photo: require("../assets/kandinsky.jpg"),
+    title: "Improvisation No. 30 (Cannons)",
+    year: "1913",
   }
 ]
 

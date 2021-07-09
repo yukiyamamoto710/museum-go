@@ -14,10 +14,6 @@ const Biography = (props) => {
       <ScrollView style={styles.scroll}>
         <Text style={styles.bio}>{bio.biography}</Text>
       </ScrollView>
-      {/* <Button
-        onPress={props.renderSearchBar}
-        title="Back"
-        color="black"/> */}
       <Pressable
         onPress={props.renderSearchBar}
         style={styles.back}>
