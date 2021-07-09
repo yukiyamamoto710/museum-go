@@ -10,7 +10,7 @@ class Form extends React.Component {
       year: '',
       medium: '',
       location: ''
-    }
+    };
   }
 
   render() {
@@ -54,7 +54,7 @@ class Form extends React.Component {
       </SafeAreaView>
     )
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   }
-})
+});
 
 export default Form;

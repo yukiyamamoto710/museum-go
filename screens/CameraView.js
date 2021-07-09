@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Pressable, ImageBackground } from 'react-native';
+import { StyleSheet, View, Pressable, ImageBackground } from 'react-native';
 import { Camera } from 'expo-camera';
+
 import CameraPreview from './camera_helpers/CameraPreview.js';
 import Form from './camera_helpers/Form.js';
 
@@ -24,7 +25,6 @@ const CameraView = (props) => {
   }
 
   const savePhoto = () => {
-    // setPreviewVisible(false)
     props.renderForm(capturedImage.uri)
   }
 
@@ -46,18 +46,14 @@ const CameraView = (props) => {
         savePhoto={savePhoto}
         retakePicture={retakePicture}/>
     )
-  // } else if (!previewVisible && capturedImage) {
-  //   return (
-  //     <Form
-  //       photo={capturedImage.uri}
-  //       addArt={props.addArt}/>
-  //   )
   } else {
     return (
       <View style={styles.container}>
-        <Camera style={styles.camera} ref={(ref) => { this.camera = ref }}>
+        <Camera
+          style={styles.camera}
+          ref={(ref) => { this.camera = ref }}>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity
+            <Pressable
               style={styles.icon}
               onPress={takePicture}/>
           </View>

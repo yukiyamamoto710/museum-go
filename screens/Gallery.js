@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Button, Text, SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, View, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import dammyData from './data/dammyData.js';
 import HomeScreen from './HomeScreen.js';
 import CameraView from './CameraView.js';
@@ -22,20 +23,18 @@ class Gallery extends React.Component {
   }
 
   componentDidMount() {
-    const getList = async () => {
+    (async () => {
       try {
         const list = await AsyncStorage.getItem('list')
         if (list) {
-          var parsed = JSON.parse(list);
-          var updated = [...this.state.list];
-          updated.unshift(parsed);
+          let updated = [...this.state.list];
+          updated.unshift(JSON.parse(list));
           this.setState({ list: updated })
         }
       } catch(e) {
         console.log(e)
       }
-    };
-    getList();
+    })();
   }
 
   addToList(art) {
@@ -48,14 +47,13 @@ class Gallery extends React.Component {
   }
 
   storeData(art) {
-    const storeList = async () => {
+    (async () => {
       try {
         await AsyncStorage.mergeItem('list', JSON.stringify(art))
       } catch (e) {
         console.log(e)
       }
-    }
-    storeList();
+    })();
   }
 
   renderForm(photo) {
@@ -69,11 +67,17 @@ class Gallery extends React.Component {
     if (!this.state.view) {
       return (
         <SafeAreaView>
-          <ScrollView style={styles.container}>
-            <Button title="Back"
-              onPress={this.props.renderHome}></Button>
-            <Button title="Add"
-              onPress={()=>this.setState({view: 'camera'})}></Button>
+          <View style={styles.container}>
+            <Button
+              onPress={this.props.renderHome}
+              title="Back"
+              color="black"/>
+            <Button
+              onPress={()=>this.setState({view: 'camera'})}
+              title="Add"
+              color="black"/>
+          </View>
+          <ScrollView>
             {this.state.list.map((art) => {
               return <WorkEntry key={art.photo} art={art}/>
             })}
@@ -98,12 +102,12 @@ class Gallery extends React.Component {
       </>
     )
   }
-}
+};
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 18,
-    color: 'black',
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
 

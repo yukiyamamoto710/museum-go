@@ -1,26 +1,26 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { SafeAreaView, ScrollView, Text, Image, Button, StyleSheet } from 'react-native';
 
 const Biography = (props) => {
   const bio = JSON.parse(props.bio);
-
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={{url: `${bio._links.thumbnail.href}`}} style={styles.image}/>
+      <Image
+        source={{url: `${bio._links.thumbnail.href}`}}
+        style={styles.image}/>
       <Text style={styles.name}>{bio.name}</Text>
       <Text style={styles.small}>{bio.birthday}-{bio.deathday}</Text>
       <Text style={styles.small}>{bio.nationality}</Text>
       <ScrollView style={styles.scroll}>
         <Text style={styles.bio}>{bio.biography}</Text>
       </ScrollView>
-      <Pressable
-        style={styles.back}
-        onPress={props.renderSearchBar}>
-        <Text>Back</Text>
-      </Pressable>
+      <Button
+        onPress={props.renderSearchBar}
+        title="Back"
+        color="black"/>
     </SafeAreaView>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -45,16 +45,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     color: 'black',
   },
-  back: {
-    height: 40,
-    width: 200,
-    left: 20,
-    marginTop: 5,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    backgroundColor: 'white',
-    borderColor: 'black',
-    marginBottom: 10,
-  }
-})
+});
+
 export default Biography;
