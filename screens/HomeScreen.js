@@ -1,5 +1,6 @@
 import React from 'react';
-import { ImageBackground, View, Text, Pressable, StyleSheet } from 'react-native';
+import { ImageBackground, View, Text, StyleSheet } from 'react-native';
+import AwesomeButton from "react-native-really-awesome-button";
 
 const HomeScreen = (props) => {
   return (
@@ -8,16 +9,28 @@ const HomeScreen = (props) => {
       style={styles.background}>
       <View style={styles.title}>
         <Text style={styles.titleText}>MUSEUM GO</Text>
-        <Pressable
-          style={styles.myGallery}
-          onPress={props.renderGallery}>
-          <Text style={styles.text}>My Gallery</Text>
-        </Pressable>
-        <Pressable
-          style={styles.viewArtists}
-          onPress={props.renderArtists}>
-          <Text style={styles.text}>View Artists</Text>
-        </Pressable>
+        <AwesomeButton
+          progress
+          onPress={props.renderGallery}
+          backgroundColor='black'
+          height={75}
+          width={300}
+          textSize={24}
+          textFontFamily="Georgia"
+          style={styles.myGallery}>
+          My Gallery
+        </AwesomeButton>
+        <AwesomeButton
+          progress
+          onPress={props.renderArtists}
+          backgroundColor='black'
+          height={75}
+          width={300}
+          textSize={24}
+          textFontFamily="Georgia"
+          style={styles.viewArtists}>
+          View Artists
+        </AwesomeButton>
       </View>
     </ImageBackground>
   )
@@ -37,9 +50,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titleText: {
-    fontSize: 45,
+    fontSize: 30,
     fontWeight: 'bold',
-    right: -115,
+    top: 20,
+    right: -165,
+    fontFamily: 'Georgia',
   },
   myGallery: {
     position: 'relative',
@@ -47,21 +62,13 @@ const styles = StyleSheet.create({
     left: 115,
     right: -300,
     height: 75,
-    justifyContent: 'center',
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    backgroundColor: 'black',
   },
   viewArtists: {
     position: 'relative',
     top: 150,
-    left: 105,
+    left: 115,
     right: -300,
     height: 75,
-    justifyContent: 'center',
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    backgroundColor: 'black',
   },
   text: {
     fontSize: 24,

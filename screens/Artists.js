@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
 import axios from 'axios';
+import AwesomeButton from "react-native-really-awesome-button";
 
 import HomeScreen from './HomeScreen.js';
 import Biography from './Biography.js';
@@ -49,15 +50,20 @@ class Artists extends React.Component {
             onChangeText={(artist) => this.setState({ artist })}
             placeholder={'Artist'}
             style={styles.input}/>
+          <AwesomeButton
+            progress
+            onPress={this.handleSearch}
+            backgroundColor='black'
+            height={40}
+            width={120}
+            textFontFamily="Georgia">
+            Search
+          </AwesomeButton>
           <Pressable
-            style={styles.button}
-            onPress={this.handleSearch}>
-            <Text style={styles.text}>Search</Text>
-          </Pressable>
-          <Button
             onPress={this.props.renderHome}
-            title="Back"
-            color="black"/>
+            style={styles.back}>
+            <Text style={{fontFamily: 'Georgia'}}>Back</Text>
+          </Pressable>
         </View>
       )
     } else {
@@ -98,23 +104,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     margin: 10,
-    marginBottom: 10,
+    marginBottom: 20,
+    fontFamily: 'Georgia',
   },
-  button: {
-    height: 40,
-    width: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 32,
+  back: {
+    color: 'black',
+    fontSize: 14,
     marginTop: 10,
-    borderRadius: 4,
-    backgroundColor: 'black',
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
   }
 });
 
