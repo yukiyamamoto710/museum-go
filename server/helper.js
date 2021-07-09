@@ -6,7 +6,7 @@ const config = {
     'X-Xapp-Token': TOKEN,
     'Accept': 'application/vnd.artsy-v2+json'
   }
-}
+};
 
 const artistAPI = (artist, callback) => {
   axios.get(`https://api.artsy.net/api/artists/${artist}`, config)
@@ -16,8 +16,6 @@ const artistAPI = (artist, callback) => {
     .catch((err) => {
       callback(err);
     })
-}
+};
 
 module.exports = artistAPI;
-
-// artistAPI('andy-warhol', ()=>{});

@@ -20,7 +20,7 @@ const CameraPreview = (props) => {
       </Pressable>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   }
-})
+});
 
 export default CameraPreview;

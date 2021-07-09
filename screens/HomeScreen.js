@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 45,
     fontWeight: 'bold',
-    right: -110,
+    right: -115,
   },
   myGallery: {
     position: 'relative',
