@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, TextInput, Image, SafeAreaView, ScrollView, Pressable, Text } from 'react-native';
+import { StyleSheet, TextInput, Image, SafeAreaView, ScrollView } from 'react-native';
+import AwesomeButton from "react-native-really-awesome-button";
 
 class Form extends React.Component {
   constructor(props) {
@@ -43,13 +44,18 @@ class Form extends React.Component {
             onChangeText={(location) => this.setState({ location })}
             placeholder={'Location'}
             style={styles.input}/>
-          <Pressable
-            style={styles.button}
+          <AwesomeButton
+            progress
             onPress={() => {
               this.props.addToList({...this.state, ...{photo: this.props.photo}})
-            }}>
-            <Text style={styles.text}>Add Artwork</Text>
-          </Pressable>
+            }}
+            backgroundColor='black'
+            height={40}
+            width={120}
+            textFontFamily="Georgia"
+            style={styles.button}>
+            Add Artwork
+          </AwesomeButton>
         </ScrollView>
       </SafeAreaView>
     )
@@ -76,15 +82,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     marginBottom: 10,
+    fontFamily: 'Georgia'
   },
   button: {
-    height: 40,
-    width: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    backgroundColor: 'black',
+    position: 'relative',
+    right: -40,
   },
   text: {
     fontSize: 16,

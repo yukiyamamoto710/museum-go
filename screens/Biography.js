@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, Image, Button, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, Text, Image, Pressable, StyleSheet } from 'react-native';
 
 const Biography = (props) => {
   const bio = JSON.parse(props.bio);
@@ -14,10 +14,15 @@ const Biography = (props) => {
       <ScrollView style={styles.scroll}>
         <Text style={styles.bio}>{bio.biography}</Text>
       </ScrollView>
-      <Button
+      {/* <Button
         onPress={props.renderSearchBar}
         title="Back"
-        color="black"/>
+        color="black"/> */}
+      <Pressable
+        onPress={props.renderSearchBar}
+        style={styles.back}>
+        <Text style={{fontFamily: 'Georgia'}}>Back</Text>
+      </Pressable>
     </SafeAreaView>
   )
 };
@@ -33,11 +38,22 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     right: -50,
+    fontFamily: 'Georgia'
+  },
+  back: {
+    fontSize: 16,
+    right: -190,
+    paddingVertical: 5,
+    fontFamily: 'Georgia'
   },
   small: {
     fontSize: 16,
     right: -50,
     paddingVertical: 5,
+    fontFamily: 'Georgia'
+  },
+  bio: {
+    fontFamily: 'Georgia',
   },
   scroll: {
     flex: 1,

@@ -13,10 +13,10 @@ const WorkEntry = (props) => {
       <Image
         source={photo}
         style={styles.image}/>
-      <Text style={styles.name}>{props.art.name}</Text>
-      <Text>{props.art.title}</Text>
-      <Text>{props.art.year}</Text>
-      <Text>{props.art.location}</Text>
+      <Text style={styles.title}>{props.art.title}</Text>
+      <Text style={styles.small}>{props.art.name}</Text>
+      <Text style={styles.small}>{props.art.year}</Text>
+      <Text style={styles.small}>{props.art.location}</Text>
     </View>
   )
 };
@@ -27,10 +27,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
   },
-  name: {
+  title: {
     paddingTop: 10,
     fontWeight: 'bold',
     fontSize: 16,
+    fontFamily: 'Georgia'
+  },
+  small: {
+    fontFamily: 'Georgia'
   },
   image: {
     width: 300,
