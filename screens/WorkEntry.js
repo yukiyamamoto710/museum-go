@@ -3,10 +3,10 @@ import { StyleSheet, Image, View, Text } from 'react-native';
 
 const WorkEntry = (props) => {
   var photo;
-  if (props.art.photo.indexOf('Application') !== -1) {
+  if (typeof props.art.photo === 'string') {
     photo = {uri: `${props.art.photo}`};
   } else {
-    photo = require("../assets/hokusai.jpeg");
+    var photo = props.art.photo;
   }
   return (
     <View style={styles.container}>
