@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, ScrollView, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
 import axios from 'axios';
 import AwesomeButton from "react-native-really-awesome-button";
 
@@ -18,14 +18,13 @@ class Artists extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.renderSearchBar = this.renderSearchBar.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.showAlert = this.showAlert.bind(this);
     this.renderBio = this.renderBio.bind(this);
   }
 
   handleSearch() {
     const { artist } = this.state;
-    axios.get(`https://application-mock-server.loca.lt/artist?artist=${artist}`)
+    axios.get(`https://tidy-cow-29.loca.lt/artist?artist=${artist}`)
       .then((res) => {
         this.setState({bio: JSON.stringify(res.data)})
       })
@@ -49,8 +48,18 @@ class Artists extends React.Component {
     );
     if(this.state.showSuggestions && this.state.artist) {
       if (filteredSuggestions.length) {
-        return filteredSuggestions.map((suggestion) => {
-          return <Button onPress={this.handleClick} title={suggestion}></Button>
+        return filteredSuggestions.slice(0, 5).map((suggestion) => {
+          return <Pressable
+                  style={styles.suggestion}
+                  onPress={() =>
+                    this.setState({
+                      artist: suggestion,
+                      showSuggestions: false
+                    })}>
+                  <Text style={styles.suggestionText}>
+                    {suggestion}
+                  </Text>
+                </Pressable>
         })
       } else {
         return null;
@@ -59,12 +68,6 @@ class Artists extends React.Component {
       return null;
     }
   }
-
-  handleClick(e) {
-    // this.setState({
-    //   artist: e.currentTarget.innerText
-    // });
-  };
 
   renderBio() {
     if (!this.state.bio) {
@@ -79,9 +82,9 @@ class Artists extends React.Component {
               this.setState({artist, showSuggestions: true})}
             placeholder={'Artist'}
             style={styles.input}/>
-          <View>
+          <ScrollView style={styles.suggestions}>
             {this.renderSuggestions()}
-          </View>
+          </ScrollView>
           <AwesomeButton
             progress
             onPress={this.handleSearch}
@@ -138,6 +141,24 @@ const styles = StyleSheet.create({
     margin: 10,
     marginBottom: 20,
     fontFamily: 'Georgia',
+  },
+  suggestions: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    zIndex: 100,
+    top: 450,
+    width: 200,
+  },
+  suggestion: {
+    paddingVertical: 5,
+    height: 30,
+    borderColor: 'black'
+  },
+  view: {
+    borderColor: 'black'
+  },
+  suggestionText: {
+    borderColor: 'black',
   },
   back: {
     color: 'black',
