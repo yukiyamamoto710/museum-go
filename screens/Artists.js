@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, ScrollView, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
 import axios from 'axios';
 import AwesomeButton from "react-native-really-awesome-button";
 
@@ -11,17 +11,20 @@ class Artists extends React.Component {
     super(props);
     this.state = {
       artist: '',
-      bio: false
+      bio: false,
+      filteredSuggestions: [],
+      showSuggestions: false
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.renderSearchBar = this.renderSearchBar.bind(this);
+    this.renderSuggestions = this.renderSuggestions.bind(this);
     this.showAlert = this.showAlert.bind(this);
     this.renderBio = this.renderBio.bind(this);
   }
 
   handleSearch() {
     const { artist } = this.state;
-    axios.get(`https://application-mock-server.loca.lt/artist?artist=${artist}`)
+    axios.get(`https://tidy-cow-29.loca.lt/artist?artist=${artist}`)
       .then((res) => {
         this.setState({bio: JSON.stringify(res.data)})
       })
@@ -38,6 +41,34 @@ class Artists extends React.Component {
     Alert.alert("Artist Not Found");
   }
 
+  renderSuggestions() {
+    const filteredSuggestions = this.props.suggestions.filter(
+      suggestion =>
+        suggestion.toLowerCase().indexOf(this.state.artist.toLowerCase()) > -1
+    );
+    if(this.state.showSuggestions && this.state.artist) {
+      if (filteredSuggestions.length) {
+        return filteredSuggestions.slice(0, 5).map((suggestion) => {
+          return <Pressable
+                  style={styles.suggestion}
+                  onPress={() =>
+                    this.setState({
+                      artist: suggestion,
+                      showSuggestions: false
+                    })}>
+                  <Text style={styles.suggestionText}>
+                    {suggestion}
+                  </Text>
+                </Pressable>
+        })
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
   renderBio() {
     if (!this.state.bio) {
       return (
@@ -47,9 +78,13 @@ class Artists extends React.Component {
             style={styles.image}/>
           <TextInput
             value={this.state.artist}
-            onChangeText={(artist) => this.setState({ artist })}
+            onChangeText={(artist) =>
+              this.setState({artist, showSuggestions: true})}
             placeholder={'Artist'}
             style={styles.input}/>
+          <ScrollView style={styles.suggestions}>
+            {this.renderSuggestions()}
+          </ScrollView>
           <AwesomeButton
             progress
             onPress={this.handleSearch}
@@ -106,6 +141,24 @@ const styles = StyleSheet.create({
     margin: 10,
     marginBottom: 20,
     fontFamily: 'Georgia',
+  },
+  suggestions: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    zIndex: 100,
+    top: 450,
+    width: 200,
+  },
+  suggestion: {
+    paddingVertical: 5,
+    height: 30,
+    borderColor: 'black'
+  },
+  view: {
+    borderColor: 'black'
+  },
+  suggestionText: {
+    borderColor: 'black',
   },
   back: {
     color: 'black',

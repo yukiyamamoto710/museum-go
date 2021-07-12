@@ -3,6 +3,7 @@ import React from 'react';
 import HomeScreen from './screens/HomeScreen.js';
 import Gallery from './screens/Gallery.js';
 import Artists from './screens/Artists.js';
+import filtered from './assets/raw-data/moma-artists.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +30,8 @@ class App extends React.Component {
       )
     } else if (this.state.view === 'artists') {
       return (
-        <Artists renderHome={this.renderHome}/>
+        <Artists renderHome={this.renderHome}
+        suggestions={filtered}/>
       )
     } else if (this.state.view === 'gallery') {
       return (
