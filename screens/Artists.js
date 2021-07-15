@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Image, TextInput, Pressable, Text, StyleSheet, Button, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import AwesomeButton from "react-native-really-awesome-button";
 
@@ -24,7 +26,7 @@ class Artists extends React.Component {
 
   handleSearch() {
     const { artist } = this.state;
-    axios.get(`https://tidy-cow-29.loca.lt/artist?artist=${artist}`)
+    axios.get(`https://application-mock-server.loca.lt/artist?artist=${artist}`)
       .then((res) => {
         this.setState({bio: JSON.stringify(res.data)})
       })
@@ -50,6 +52,7 @@ class Artists extends React.Component {
       if (filteredSuggestions.length) {
         return filteredSuggestions.slice(0, 5).map((suggestion) => {
           return <Pressable
+                  key={suggestion}
                   style={styles.suggestion}
                   onPress={() =>
                     this.setState({

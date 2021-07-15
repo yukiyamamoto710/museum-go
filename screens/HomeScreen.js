@@ -1,8 +1,10 @@
 import React from 'react';
 import { ImageBackground, View, Text, StyleSheet } from 'react-native';
 import AwesomeButton from "react-native-really-awesome-button";
+import ArtistsPage from './ArtistsPage.js';
+import Artists from './Artists.js';
 
-const HomeScreen = (props) => {
+const HomeScreen = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../assets/mondrian.jpg')}
@@ -11,7 +13,7 @@ const HomeScreen = (props) => {
         <Text style={styles.titleText}>MUSEUM GO</Text>
         <AwesomeButton
           progress
-          onPress={props.renderGallery}
+          onPress={() => navigation.navigate('Gallery')}
           backgroundColor='black'
           height={75}
           width={300}
@@ -22,7 +24,7 @@ const HomeScreen = (props) => {
         </AwesomeButton>
         <AwesomeButton
           progress
-          onPress={props.renderArtists}
+          onPress={() => navigation.navigate('Artists')}
           backgroundColor='black'
           height={75}
           width={300}
