@@ -26,7 +26,7 @@ class Artists extends React.Component {
 
   handleSearch() {
     const { artist } = this.state;
-    axios.get(`https://application-mock-server.loca.lt/artist?artist=${artist}`)
+    axios.get(`/artist?artist=${artist}`)
       .then((res) => {
         this.setState({bio: JSON.stringify(res.data)})
       })
@@ -51,18 +51,20 @@ class Artists extends React.Component {
     if(this.state.showSuggestions && this.state.artist) {
       if (filteredSuggestions.length) {
         return filteredSuggestions.slice(0, 5).map((suggestion) => {
-          return <Pressable
-                  key={suggestion}
-                  style={styles.suggestion}
-                  onPress={() =>
-                    this.setState({
-                      artist: suggestion,
-                      showSuggestions: false
-                    })}>
-                  <Text style={styles.suggestionText}>
-                    {suggestion}
-                  </Text>
-                </Pressable>
+          return (
+            <View style={styles.box} key={suggestion}>
+              <Pressable
+                style={styles.suggestion}
+                onPress={() =>
+                  this.setState({
+                    artist: suggestion,
+                    showSuggestions: false
+                  })}>
+                <Text style={styles.suggestionText}>
+                  {suggestion}
+                </Text>
+              </Pressable>
+            </View>)
         })
       } else {
         return null;
@@ -151,6 +153,9 @@ const styles = StyleSheet.create({
     zIndex: 100,
     top: 450,
     width: 200,
+  },
+  box: {
+    borderColor: 'black',
   },
   suggestion: {
     paddingVertical: 5,

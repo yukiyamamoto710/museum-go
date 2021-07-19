@@ -60,7 +60,6 @@ class Gallery extends React.Component {
           let updated = JSON.parse(list)
           updated.push(added)
           await AsyncStorage.setItem('list', JSON.stringify(updated))
-          // await AsyncStorage.removeItem('list')
         }
       } catch (e) {
         console.log(e)

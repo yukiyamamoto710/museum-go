@@ -1,13 +1,10 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/HomeScreen.js';
 import Gallery from './screens/Gallery.js';
 import Artists from './screens/Artists.js';
 import filtered from './assets/raw-data/moma-artists.js';
 
-const Stack = createStackNavigator();
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -45,13 +42,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Artist" component={Artists} />
-          <Stack.Screen name="My Gallery" component={Gallery} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <>
+      {this.renderView()}
+      </>
     )
   }
 }
