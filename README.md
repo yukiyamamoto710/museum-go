@@ -46,7 +46,7 @@ To get a local copy up and running follow these simple steps.
 ## Usage
 - Search artists's biography from View Artists page
 - Take a photo of an artwork and save it along with work details in My Gallery page
-
+<img src="assets/view-artists.jpg" alt="View Artists" width="400"/><img src="assets/my-gallery.jpg" alt="My Gallery" width="400"/>
 
 <!-- ROADMAP -->
 ## Roadmap
