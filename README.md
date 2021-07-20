@@ -1,5 +1,4 @@
 # Museum Go
-build your own art gallery by taking/saving pictures of your favorite artworks and it also enables you to look up artists' biography
 
 <!-- ABOUT THE APPLICATION -->
 ## About The Application
