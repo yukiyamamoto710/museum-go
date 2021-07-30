@@ -3,10 +3,12 @@ import { SafeAreaView, ScrollView, Text, Image, Pressable, StyleSheet } from 're
 
 const Biography = (props) => {
   const bio = JSON.parse(props.bio);
+  console.log(bio)
+  //_links.thumbnail.href
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={{url: `${bio._links.thumbnail.href}`}}
+        source={{url: `${bio.image}`}}
         style={styles.image}/>
       <Text style={styles.name}>{bio.name}</Text>
       <Text style={styles.small}>{bio.birthday}-{bio.deathday}</Text>

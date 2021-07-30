@@ -25,15 +25,14 @@ Biography.insertMany(sampleBio)
     console.log(error)
   });
 
-let getBio = (callback)=> {
-  // Query can take callback too
-  Repo.find({}).sort({forks: 'desc'}).limit(25)
-    .then((results)=>{
-      callback(null, results)
-    })
-    .catch(()=>{
-      console.log('could not get data');
-    })
+let getBio = (slug)=> {
+  return Biography.findOne({slug: slug})
+    // .then((results)=>{
+    //   callback(null, results)
+    // })
+    // .catch(()=>{
+    //   console.log('could not get data');
+    // })
 }
 
 module.exports = getBio;
