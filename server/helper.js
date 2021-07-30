@@ -8,14 +8,8 @@ const config = {
   }
 };
 
-const artistAPI = (artist, callback) => {
-  axios.get(`https://api.artsy.net/api/artists/${artist}`, config)
-    .then((res) => {
-      callback(null, res.data);
-    })
-    .catch((err) => {
-      callback(err);
-    })
+const artistAPI = (artist) => {
+  return axios.get(`https://api.artsy.net/api/artists/${artist}`, config)
 };
 
 module.exports = artistAPI;
