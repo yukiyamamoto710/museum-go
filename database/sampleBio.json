@@ -17,4 +17,24 @@
   "deathday": "1973",
   "nationality": "Spanish",
   "image": "https://d32dm0rphc51dk.cloudfront.net/i3rCA3IaKE-cLBnc-U5swQ/four_thirds.jpg"
-  }]
+},
+{
+    "_id": "4d8b92bd4eb68a1b2c00047c",
+    "slug": "jackson-pollock",
+    "name": "Jackson Pollock",
+    "biography": "Rejecting the easel, [Abstract Expressionist](/#!/gene/abstract-expressionism) Jackson Pollock employed such unconventional tools as sticks, trowels, knives, and meat-basters to apply paint to canvases that lay directly on his studio floor. Controlling the distribution of paint by curtailing his own movements while splattering it onto the canvas, he choreographed a rhythmic application of color for each work.This unique method became known as Action painting, and its followers held that the act of making a work is inherent to its meaning.",
+    "birthday": "1912",
+    "deathday": "1956",
+    "nationality": "American",
+    "image": "https://d32dm0rphc51dk.cloudfront.net/NwSWV2ah9kkXAuSxCkYvsw/four_thirds.jpg"
+},
+{
+  "_id": "4d8b92774eb68a1b2c000134",
+  "slug": "claude-monet",
+  "name": "Claude Monet",
+  "biography": "Claude Monet, born Oscar Claude Monet (14 November 1840  5 December 1926) was a founder of French impressionist painting, and the most consistent and prolific practitioner of the movement's philosophy of expressing one's perceptions before nature, especially as applied to plein-airlandscape painting. The term Impressionism is derived from the title of his painting Impression, Sunrise (Impression, soleil levant).",
+  "birthday": "1840",
+  "deathday": "1926",
+  "nationality": "French",
+  "image": "https://d32dm0rphc51dk.cloudfront.net/95EYpbkhcWsEKG18njyhCw/four_thirds.jpg"
+}]

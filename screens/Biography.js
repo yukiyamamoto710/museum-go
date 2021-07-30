@@ -3,8 +3,7 @@ import { SafeAreaView, ScrollView, Text, Image, Pressable, StyleSheet } from 're
 
 const Biography = (props) => {
   const bio = JSON.parse(props.bio);
-  console.log(bio)
-  //_links.thumbnail.href
+  // if using Artsy API, use bio._links.thumbnail.href instead on LINE 10
   return (
     <SafeAreaView style={styles.container}>
       <Image
