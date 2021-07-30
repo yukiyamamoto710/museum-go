@@ -1,10 +1,12 @@
 # Museum Go
-build your own art gallery by taking/saving pictures of your favorite artworks and it also enables you to look up artists' biography
+![View Artists](https://media.giphy.com/media/5i6ILFg17iqrxdZfSs/giphy.gif)
+![My Gallery](https://media.giphy.com/media/Xv0n3lURlFk9dBq4pj/giphy.gif)
 
 <!-- ABOUT THE APPLICATION -->
 ## About The Application
 
-build your own art gallery by taking/saving pictures of your favorite artworks and it also enables you to look up artists' biography
+A mobile app where users can build their own art gallery by taking/saving photos of their favorite artworks and also look up artists' biography. 
+This app was built for 2 days as a MVP project.
 
 ### Built With
 
@@ -25,28 +27,31 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Clone the repo
+1. Fork and clone the repo to your local computer
    ```sh
    git clone https://github.com/yukiyamamoto710/museum-go.git
    ```
-2. Get an API Key at https://developers.artsy.net/v2/start
+2. Get an API Key from https://developers.artsy.net/v2/start
 
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in ```server/config.js```
+4. Create a config.js file in the root directory and enter your API in ```server/config.js```
 
 5. Run expo and server
    ```sh
    npm start & npm run server
+   ```
+6. Run a mock server using JSON Server and change the url in ```screens/Artists.js```
+   ```sh
+   lt --port 8000 --subdomain application-mock-server
    ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 - Search artists's biography from View Artists page
 - Take a photo of an artwork and save it along with work details in My Gallery page
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -83,10 +88,8 @@ Yuki Yamamoto - (https://www.linkedin.com/in/yukiyamamoto1) - yukiyamamoto710@gm
 
 * [Artsy API](https://developers.artsy.net/v2/start)
 * [The Metropolitan Museum of Art Collection API](https://www.metmuseum.org/)
+* [React Native Really Awesome Button](https://github.com/rcaferati/react-native-really-awesome-button)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-
-
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
